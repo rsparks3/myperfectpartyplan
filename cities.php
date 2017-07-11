@@ -67,7 +67,7 @@ function sortTable(n) {
         $result = $conn->query($sql);
 
         if($result->num_rows > 0) {
-            echo("Great! We've got some companies listed in your area.  Here's a few to start.  (Hint: Click 'Category' to sort by category!) <br /><br />");
+            echo("Great! We've got some companies listed in your area.  Here's a few to start.  (Hint: Click on a column to sort by it!) <br /><br />");
             echo("<table class='companies' id='companies'>");
             echo("<thead><tr><th onclick='sortTable(0)'>Company Name</th><th onclick='sortTable(1)'>Website</th><th onclick='sortTable(2)'>Address</th><th onclick='sortTable(3)'>Category</th><th onclick='sortTable(4)'>Phone Number</th><th onclick='sortTable(5)'>Email</th></tr></thead><tbody>");
 
