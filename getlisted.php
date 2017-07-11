@@ -2,59 +2,83 @@
 <head>
 	<title>My Perfect Party Plan</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="stylehseet" type="text/css" href="getlistedtables.css">
 	<?php include("connect.php"); ?>
 
-	<script> 
-	function sortTable(n) {
-		var table;
-		var rows;
-		var switching;
-		var i;
-		var x;
-		var y;
-		var shouldSwitch;
-		var dir;
-		var switchcount = 0;
+	<style>
+	.getlisted {
+		background: white;
+		padding: 5px;
+		min-width: 70%;
+		margin: auto;
 
-		table = document.getElementById("getlisted");
-		switching = true;
-		dir = "asc";
-
-		while(switching) {
-			switching = false;
-			rows = table.getElementsByTagName("tr");
-			for(int i = 1; i < (rows.length - 1); i++) {
-				shouldSwitch = false;
-
-				x = rows[i].getElementsByTagName("td")[0];
-				y = rows[i+1].getElementsByTagName("td")[0];
-
-				if(dir == "asc") {
-					if(x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-						shouldSwitch = true;
-						break;
-					}
-				} else if (dir == "desc") {
-					if(x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-						shouldSwitch = true;
-						break;
-					}
-				}
-			}
-			if(shouldSwitch) {
-				rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
-				switching = true;
-				switchcount ++;
-			} else {
-				if(switchcount == 0 && dir == "asc") {
-					dir = "desc";
-					switching = true;
-				}
-			}
-		}
 	}
-	</script>
+
+	tr {
+		border-top: 1px solid #C1C3D1;
+		border-bottom: 1px solid #C1C3D1;
+		color: #666B85;
+		font-size: 14px;
+		font-weight: normal;
+		text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+	}
+
+	tr:hover {
+		background: #FFF1B5;
+	}
+
+	tr td {
+		padding-top: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-bottom: 5px;
+	}
+
+	tr td:first-child {
+		width: 200px;
+	}
+
+	tr td:nth-child(2) {
+		max-width: 500px;
+	}
+
+	tr td input[type=text] {
+		width: 250px;
+	}
+
+	#createacct {
+		margin-top: -50px;
+	}
+
+	#createacct input[type=text] {
+		font-style: italic;
+		padding: 0px 0px 0px 0px;
+		background: transparent;
+		outline: none;
+		border: none;
+		border-bottom: 1px dashed #83A4C5;
+		overflow: hidden;
+		resize: none;
+		height: 20px;
+	}
+
+	#createacct textarea {
+		font-style: italic;
+		padding: 0px 0px 0px 0px;
+		background: transparent;
+		outline: none;
+		border: none;
+		border-bottom: 1px dashed #83A4C5;
+		overflow: hidden;
+		width:250px;
+	}
+
+	#createacct textarea:focus,
+	#createacct input[type=text]:focus {
+		border-bottom: 1px dashed #5023AA;
+	}
+
+	</style>
+
 </head>
 
 <body>
@@ -64,8 +88,8 @@
 	<div class="content">
 	<p>
 		Hey! Welcome to our party.  Make a business account to get listed!
-		<form method='POST' action='createbussinessaccount.php'>
-		<table class="getlisted" id="getlisted">
+		<form method='POST' action='createbussinessaccount.php' id="createacct">
+		<table class="getlisted">
 			<tr><td>COMPANY NAME</td><td><input type="text" name="companyname"></td></tr>
 			<tr><td>MERCHANT ADDRESS</td><td><textarea name="merchaddress" rows="3" cols="30"></textarea></td></tr>
 			<tr><td>WEBSITE URL</td><td><input type="text" name="url"></td></tr>
