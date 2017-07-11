@@ -1,5 +1,10 @@
+html {
+	font-family: "Helvetica";
+}
+
 body {
 	background-image: url('background.png');
+	font-family:"Helvetica";
 }
 
 .header {

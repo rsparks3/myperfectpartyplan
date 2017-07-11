@@ -2,7 +2,59 @@
 <head>
 	<title>My Perfect Party Plan</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylehseet" type="text/css" href="getlistedtables.css">
 	<?php include("connect.php"); ?>
+
+	<script> 
+	function sortTable(n) {
+		var table;
+		var rows;
+		var switching;
+		var i;
+		var x;
+		var y;
+		var shouldSwitch;
+		var dir;
+		var switchcount = 0;
+
+		table = document.getElementById("getlisted");
+		switching = true;
+		dir = "asc";
+
+		while(switching) {
+			switching = false;
+			rows = table.getElementsByTagName("tr");
+			for(int i = 1; i < (rows.length - 1); i++) {
+				shouldSwitch = false;
+
+				x = rows[i].getElementsByTagName("td")[0];
+				y = rows[i+1].getElementsByTagName("td")[0];
+
+				if(dir == "asc") {
+					if(x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						shouldSwitch = true;
+						break;
+					}
+				} else if (dir == "desc") {
+					if(x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+			}
+			if(shouldSwitch) {
+				rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+				switching = true;
+				switchcount ++;
+			} else {
+				if(switchcount == 0 && dir == "asc") {
+					dir = "desc";
+					switching = true;
+				}
+			}
+		}
+	}
+	</script>
 </head>
 
 <body>
@@ -13,7 +65,7 @@
 	<p>
 		Hey! Welcome to our party.  Make a business account to get listed!
 		<form method='POST' action='createbussinessaccount.php'>
-		<table class="getlisted">
+		<table class="getlisted" id="getlisted">
 			<tr><td>COMPANY NAME</td><td><input type="text" name="companyname"></td></tr>
 			<tr><td>MERCHANT ADDRESS</td><td><textarea name="merchaddress" rows="3" cols="30"></textarea></td></tr>
 			<tr><td>WEBSITE URL</td><td><input type="text" name="url"></td></tr>
