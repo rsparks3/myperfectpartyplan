@@ -47,24 +47,24 @@
 	}
 </style>
 <div class="header" style="display:flex;justify-content: space-between;"">
-	<div class="logo"><img src="logo.gif" alt="My Perect Party Plan" /></div>
+	<div class="logo"><img src="logo.gif" alt="My Perfect Party Plan" /></div>
 	<div class="search" style="padding-top:23px;padding-right:50px;">
-		<form method="GET" action="search.php"><input type="search" placeholder="Search" name="query"></form>
+		<form method="GET" action="../search.php"><input type="search" placeholder="Search" name="query"></form>
 	</div>
 </div>
 	  <nav>
 		  <ul>
 		    <li>
-		      <a href="index.php">Home</a>
+		      <a href="../index.php">Home</a>
 		    </li>
 		    <li>
-		      <a href="about.php">About</a>
+		      <a href="../about.php">About</a>
 		    </li>
 		    <li>
-		      <a href="locations.php">Directory</a>
+		      <a href="../locations.php">Directory</a>
 		    </li>
 		    <li>
-		      <a href="photos.php">Photos</a>
+		      <a href="../photos.php">Photos</a>
 		    </li>
 		    <li>
 		    	<a href="#">Plan it!</a>
