@@ -71,7 +71,7 @@
 			OR `email` LIKE LOWER('%" . $_GET['query'] . "%') 
 			OR `name` LIKE LOWER('%" . $_GET['query'] . "%') 
 			OR `phone` LIKE LOWER('%" . $_GET['query'] . "%')";
-		echo("Your search results for: " . $_GET['query'] . "<br />");
+		echo("Your search results for: " . $_GET['query'] . "<br /><br />");
 		echo("<i>Companies</i><br />");
 
 		$result = $conn->query($sql);
@@ -83,9 +83,29 @@
 			while($row = mysqli_fetch_array($result)) {
 				echo("<tr><td>" . $row['name'] . "</td><td>" . $row['url'] . "</td><td>" . $row['address'] . "</td><td>" . $row['category'] . "</td><td>" . $row['phone'] . "</td><td>" . $row['email'] . "</td></tr>");
 			}
-			echo("</tbody></table>");
+			echo("</tbody></table><br /><Br />");
 		} else {
-			echo("We didn't find any companies matching your query.  Feel free to try again!");
+			echo("We didn't find any companies matching your query.  Feel free to try again!<br /><br />");
+		}
+		
+		echo("<i>Pages</i><br />");
+
+		$sql2 = "SELECT * FROM `text_content` 
+			WHERE `id` LIKE LOWER('%" . $_GET['query'] . "%') 
+			OR `content` LIKE LOWER('%" . $_GET['query'] . "%')";
+
+		$result2 = $conn->query($sql2);
+
+		if($result2->num_rows > 0) {
+			while($row2 = mysqli_fetch_array($result2)) {
+				if($row2['id'] == 'home') {
+					echo("<a href='index.php'>" . $row2['id'] . "</a><br />");
+				} else {
+					echo("<a href='" . $row2['id'] . ".php'>" . $row2['id'] . "</a><br />");
+				}
+			}
+		} else {
+			echo("We didn't find any pages that contained your query.  Feel free to try again!");
 		}
 	?>
 	</p>
