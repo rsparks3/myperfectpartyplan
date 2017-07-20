@@ -63,7 +63,7 @@ function sortTable(n) {
 <div class="content">
     <p>
         <?php 
-        $sql = "SELECT * FROM `" . $_GET["state"] . "` WHERE `city`='" . $_GET["city"] . "'";
+        $sql = "SELECT * FROM `companies` WHERE `state`='" . $_GET["state"]. "' AND `city`='" . $_GET["city"] . "'";
         $result = $conn->query($sql);
 
         if($result->num_rows > 0) {
