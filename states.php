@@ -10,7 +10,7 @@
 
 	<div class="content">
 	<p> <?php 
-		$sql = "SHOW TABLES LIKE '" . $_GET["state"] . "';";
+		$sql = "SELECT * FROM `Cities` WHERE `State`='" . $_GET["state"] . "'";
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0) {
