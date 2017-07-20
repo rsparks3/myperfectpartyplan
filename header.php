@@ -14,7 +14,7 @@
 		      <a href="locations.php">Directory</a>
 		    </li>
 		    <li>
-		      <a href="#">Photos</a>
+		      <a href="photos.php">Photos</a>
 		    </li>
 		    <li>
 		    	<a href="#">Contact</a>
