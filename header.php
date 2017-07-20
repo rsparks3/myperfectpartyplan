@@ -11,7 +11,7 @@
 		      <a href="about.php">About</a>
 		    </li>
 		    <li>
-		      <a href="locations.php">Locations</a>
+		      <a href="locations.php">Directory</a>
 		    </li>
 		    <li>
 		      <a href="#">Photos</a>
