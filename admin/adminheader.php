@@ -55,16 +55,16 @@
 	  <nav>
 		  <ul>
 		    <li>
-		      <a href="../index.php">Admin Panel</a>
+		      <a href="adminpanel.php">Admin Panel</a>
 		    </li>
 		    <li>
-		      <a href="../about.php">Pending Accounts</a>
+		      <a href="pendingaccounts.php">Pending Accounts</a>
 		    </li>
 		    <li>
-		      <a href="../locations.php">Manage Content</a>
+		      <a href="managecontent.php">Manage Content</a>
 		    </li>
 		    <li>
-		      <a href="../photos.php">User Requests</a>
+		      <a href="userrequests.php">User Requests</a>
 		    </li>
 		    <li>
 		    	<a href="#">Help Tickets</a>
