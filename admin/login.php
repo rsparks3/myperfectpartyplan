@@ -10,35 +10,11 @@ if($result->num_rows > 0) {
 	{
 		$_SESSION["username"] = $row["username"];
 		$_SESSION["rank"] = $row["rank"];
-		echo("<script>alert('Logged in successfully, your rank is" . $_SESSION["rank"] . "');</script>");
+		echo("<script>alert('Logged in successfully, your rank is " . $_SESSION["rank"] . "');
+			window.location = 'adminpanel.php'</script>");
 	}
 } else {
-	echo("<script>alert('Could not log in.');</script>");
+	echo("<script>alert('Could not log in.');
+		window.location = '../index.php'</script>");
 }
 ?>
-<html>
-<head>
-	<title>Admin Section</title>
-	<link rel="stylesheet" type="text/css" href="../main.css">
-</head>
-
-<body>
-
-	<?php 
-	if($_SESSION["rank"]=="admin") {
-		include("adminheader.php"); 
-	} else {
-		include("header.php");
-	}
-	?>
-
-	<div class="content">
-	<p> 
-	</p>
-	</div>
-
-	<div class="footer">
-	<?php include("../footer.php"); ?>
-	</div>
-</body>
-</html>
