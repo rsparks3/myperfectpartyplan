@@ -21,7 +21,29 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 		select {
 			width:300px;
 			padding: 7px;
-			
+			overflow:hidden;
+			background:#EEEEEE;
+			border: 1px solid #CCC;
+			margin: 5px 5px 15px;
+		}
+
+		input[type=submit] {
+			border : solid 0px #ffffff;
+			border-radius : 3px;
+			moz-border-radius : 3px;
+			-webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+			-moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+			box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+			font-size : 20px;
+			color : #ffffff;
+			padding : 4px 4px;
+			background-color : #598c00;
+			width:300px;
+			margin: 15px 5px 5px;
+		}
+
+		input[type=submit]:hover {
+			background-color: #3F6301;
 		}
 	</style>
 </head>

@@ -63,6 +63,7 @@ $rank = $_SESSION['rank'];
 	?>
 
 	<div class="content">
+	<span>Seriously none of this works yet...</span><br />
 	<?php
 	if($rank == "admin") {
 	?>
