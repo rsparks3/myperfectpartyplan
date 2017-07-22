@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>My Perfect Party Plan</title>
+	<title>Get Listed</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<?php include("connect.php"); ?>
 
@@ -87,8 +87,8 @@
 
 	<div class="content">
 	<p>
-		Hey! Welcome to our party.  Make a business account to get listed!
-		<form method='POST' action='createbussinessaccount.php' id="createacct">
+		Hey! Welcome to our party.  Make a business account to get listed!<br ><br /><br /><br />
+		<form method='POST' action='createbusinessaccount.php' id="createacct">
 		<table class="getlisted">
 			<tr><td>COMPANY NAME</td><td><input type="text" name="companyname"></td></tr>
 			<tr><td>MERCHANT ADDRESS</td><td><textarea name="merchaddress" rows="3" cols="30"></textarea></td></tr>
@@ -102,6 +102,7 @@
 			<input type="radio" name="service" value="premiere">Premiere Listing - $540 ANNUALLY (Basic listing with Logo plus premium placement ad at top of company's category listing)<br />
 			</td></tr>
 			<tr><td>ADDITIONAL </td><td>insert more stuffz here</td></tr>
+			<tr><td></td><td><input type="submit" value="SUBMIT FORM"></td></tr>
 		</table>
 		</form>
 	</p>
