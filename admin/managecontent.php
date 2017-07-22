@@ -118,7 +118,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 	</div>
 
 	<div class="footer">
-	<?php include("../footer.php"); ?>
+	<?php include("footer.php"); ?>
 	</div>
 </body>
 </html>
