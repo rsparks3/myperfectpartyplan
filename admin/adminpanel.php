@@ -63,6 +63,7 @@ $rank = $_SESSION['rank'];
 	?>
 
 	<div class="content">
+	<span>Seriously none of this works yet...</span><br />
 	<?php
 	if($rank == "admin") {
 	?>
@@ -100,7 +101,7 @@ $rank = $_SESSION['rank'];
 	</div>
 
 	<div class="footer">
-	<?php include("../footer.php"); ?>
+	<?php include("footer.php"); ?>
 	</div>
 </body>
 </html>
