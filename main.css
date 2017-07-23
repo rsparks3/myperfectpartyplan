@@ -22,21 +22,6 @@ body {
 	margin-top:-10px;
 }
 
-.footer {
-	background-color:#F8EFFC;
-	margin:auto;
-
-	margin-top:20px;
-	height: 50px;
-
-	padding:0px;
-	text-align:center;
-
-	border-radius: 11px 11px 11px 11px;
-    -moz-border-radius: 11px 11px 11px 11px;
-    -webkit-border-radius: 11px 11px 11px 11px;
-}
-
 .content {
 	background-color:#FDFDFD;
 	margin:auto;
@@ -44,14 +29,29 @@ body {
 	min-height: 100px;
 	margin-left:-10px;
 	margin-top:-10px;
-	padding-bottom:10px;
+	padding-bottom:20px;
 	font-family:"Helvetica";
 }
 
 .content p {
-	padding-top:25px;
-	padding-left:40px;
-	padding-right:40px;
+	padding:20px;
+}
+
+.footer {
+	background-color:#340059;
+	color:#DDD3FF;
+	margin:auto;
+	position:absolute;
+
+	bottom:0;
+	padding:20px;
+	text-align:center;
+}
+
+.footer a {
+	text-decoration:none;
+	font-weight:bold;
+	color:#6159FF;
 }
 
 .content .featurephotos {

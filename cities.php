@@ -62,6 +62,8 @@
 			margin:10px;
 			padding:10px;
 			background-color:#FDFDFD;
+			text-align:center;
+			width:300px;
 
 			-webkit-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
 			-moz-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
@@ -70,13 +72,23 @@
 			-moz-border-radius: 9px 9px 9px 9px;
 			-webkit-border-radius: 9px 9px 9px 9px;
 		}
+
+		.card .businessname {
+			text-decoration:none;
+			font-weight:bold;
+		}
+
+		.card .businessname a {
+			text-decoration:none;
+			color:#000;
+		}
 	</style>
 </head>
 
 <body>
 <?php include("header.php"); ?>
 
-<div class="content">
+<div class="content" style='padding:20px;'>
     <p>
         <?php 
         $sql = "SELECT * FROM `companies` WHERE `state`='" . $_GET["state"]. "' AND `city`='" . $_GET["city"] . "'";
@@ -88,6 +100,7 @@
             	echo("<div class='card'>");
             	echo("<span class='businessname'><a href='" . $row['url'] . "'>" . $row['name'] . "</a></span><br />");
             	echo("<span class='data'>" . $row['address'] . "</span><br />");
+            	echo("<span class='data'>" . $_GET['city'] . ", " . $_GET['state'] . "</span><br />");
             	echo("<span class='data'>". $row['phone'] . "</span><br />");
             	echo("<span class='data'>". $row['email'] . "</span><br />");
             	echo("<span class='url'><a href='" . $row['url'] . "'>" . $row['url'] . "</a></span><br />");

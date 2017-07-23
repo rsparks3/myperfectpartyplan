@@ -3,23 +3,36 @@
 	<title>Aboot this site</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<?php include("connect.php"); ?>
+	<style>
+		#cities {
+			padding:10px;
+			width:30%;
+			outline:none;
+		}
+		#cities:focus {
+			outline:none;
+		}
+	</style>
 </head>
 
 <body>
 	<?php include("header.php"); ?>
 
-	<div class="content">
+	<div class="content" style="text-align:center;">
 	<p> <?php 
 		$sql = "SELECT * FROM `Cities` WHERE `State`='" . $_GET["state"] . "'";
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0) {
-			echo("Great! What city are you looking for? <br>");
+			echo("<b>Great! What city are you looking for?</b><br />");
 			$sql = "SELECT * FROM `Cities` WHERE `State`='" . $_GET["state"] . "'";
 			$cities = $conn->query($sql);
 			if($cities->num_rows > 0) {
+				echo("<form method='get' action='cities.php' id='citiesform'>");
+			    echo("<input type='hidden' name='state' value='" . $_GET['state'] . "' /><select id='cities' name='city'>");
+			    echo("<option value=''>Select a city you're looking in</option>");
 			    while($row = $cities->fetch_assoc()) {
-			        echo "<a href='cities.php?state=" . $_GET["state"] . "&city=" . $row["City"] . "'>" . $row["City"] . "</a><br>";
+			    	echo("<option value='" . $row['City'] . "'>" . $row['City'] . "</option>");
                 }
             }
 		} else {
@@ -32,5 +45,13 @@
 	<div class="footer">
 	<?php include("footer.php"); ?>
 	</div>
+
+	<script>
+		var cities = document.getElementById("cities");
+
+		cities.addEventListener("change", function() {
+			document.getElementById("citiesform").submit();
+		})
+	</script>
 </body>
 </html>
