@@ -89,7 +89,9 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 					height:"480",
 					width:"98%",
 					menubar: false,
-					toolbar: 'undo redo undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+					plugins: "textcolor image imagetools link",
+					fontsize_formats:"8pt 10pt 12pt 14pt 16pt 20pt 24pt 36pt 48pt",
+					toolbar: 'undo redo undo redo | insert | styleselect fontselect fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor | image link'
 				});
 				function selectPage(val) {
 					var xhttp;

@@ -33,17 +33,16 @@
 			position:absolute;
 			top:45%;
 			left:50%;
-			width:400px;
+			width:40%;
 			transform:translateX(-50%);
 			
 			display: inline-block;
 			  -webkit-box-sizing: content-box;
 			  -moz-box-sizing: content-box;
 			  box-sizing: content-box;
-			  padding: 10px 20px;
-			  border: 2px solid rgba(89,0,255,1);
-			  -webkit-border-radius: 6px;
+			  padding: 20px 25px;
 			  border-radius: 6px;
+			  border:0;
 			  font: normal 16px/normal "Trebuchet MS", Helvetica, sans-serif;
 			  color: rgba(49,0,107,1);
 			  -o-text-overflow: clip;
