@@ -9,19 +9,17 @@ body {
 	display:flex;
 	justify-content: space-between;
 
-	margin-top:70px;
-	min-height: 100px;
-	max-height:500px;
+	margin-top:-10px;
+	margin-left:-10px;
+	margin-bottom:10px;
+	height:70px;
+}
 
-	padding-top:10px;
-	padding-left:10px;
-
-	-webkit-box-shadow: 0px 0px 16px -1px rgba(102,0,102,0.53);
-    -moz-box-shadow: 0px 0px 16px -1px rgba(102,0,102,0.53);
-	box-shadow: 0px 0px 16px -1px rgba(102,0,102,0.53);
-	border-radius: 11px 11px 0px 0px;
-    -moz-border-radius: 11px 11px 0px 0px;
-    -webkit-border-radius: 11px 11px 0px 0px;
+.logo img {
+	-moz-transform:scale(0.6);
+	-webkit-transform:scale(0.6);
+	transform:scale(0.6);
+	margin-top:-5px;
 }
 
 .footer {
@@ -31,9 +29,7 @@ body {
 	margin-top:20px;
 	height: 50px;
 
-	padding-top:10px;
-	padding-left:10px;
-	padding-bottom:10px;
+	padding:0px;
 	text-align:center;
 
 	border-radius: 11px 11px 11px 11px;
@@ -46,27 +42,60 @@ body {
 	margin:auto;
 
 	min-height: 100px;
+	margin-left:-10px;
+	margin-top:-10px;
 
 	padding-top:10px;
 	padding-left:10px;
 	padding-bottom:20px;
 	font-family:"Helvetica";
+}
 
-	-webkit-box-shadow: 0px 0px 16px -1px rgba(102,0,102,0.53);
-    -moz-box-shadow: 0px 0px 16px -1px rgba(102,0,102,0.53);
-	box-shadow: 0px 0px 16px -1px rgba(102,0,102,0.53);
-	border-radius: 0px 0px 11px 11px;
-    -moz-border-radius: 0px 0px 11px 11px;
-    -webkit-border-radius: 0px 0px 11px 11px;
+.content .featurephotos {
+	width:100%;
+	margin-left:-10px;
+	margin-top:-10px;
+	position: relative;
+}
+.content .featurephotos img {
+	width:100%;
+	max-height:400px;
+	object-fit: cover;
 }
 
 .header,
 .content,
 .footer {
-	min-width:70%;
-	max-width:800px;
+	width:100%;
 }
 
+nav {
+	z-index:200;
+	margin-top:-10px;
+	margin-right:10px;
+}
+nav ul {
+	text-align: center;
+}
+nav ul li {
+	display:inline-block;
+}
+nav ul li a {
+	padding: 18px;
+	font-family:"Trebuchet MS";
+	text-transform:uppercase;
+	color: #16005B;
+	font-size:18px;
+	text-decoration:none;
+	font-weight:bold;
+	display:block;
+}
+nav ul li a:hover {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 0.1);
+	color: rgba(47, 0, 89, 0.7);
+}
+/*
 nav {
   max-width: 800px;
   min-width: 70.5%;
@@ -102,3 +131,4 @@ nav ul li a:hover {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 185, 218, 0.7);
 }
+*/
