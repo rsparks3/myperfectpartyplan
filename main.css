@@ -19,7 +19,7 @@ body {
 	-moz-transform:scale(0.6);
 	-webkit-transform:scale(0.6);
 	transform:scale(0.6);
-	margin-top:-5px;
+	margin-top:-10px;
 }
 
 .footer {
@@ -49,6 +49,7 @@ body {
 }
 
 .content p {
+	padding-top:25px;
 	padding-left:40px;
 	padding-right:40px;
 }
@@ -73,6 +74,7 @@ body {
 nav {
 	z-index:200;
 	margin-top:-10px;
+	margin-right:10px;
 }
 nav ul {
 	text-align: center;
