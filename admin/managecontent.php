@@ -87,7 +87,9 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 					allow_html_in_named_anchor: true,
 					entity_encoding: "raw",
 					height:"480",
-					width:"98%"
+					width:"98%",
+					menubar: false,
+					toolbar: 'undo redo undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
 				});
 				function selectPage(val) {
 					var xhttp;
