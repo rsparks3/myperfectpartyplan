@@ -48,11 +48,7 @@
 </style>
 <div class="header" style="display:flex;justify-content: space-between;"">
 	<div class="logo"><img src="logo.gif" alt="My Perfect Party Plan" /></div>
-	<div class="search" style="padding-top:23px;padding-right:50px;">
-		<form method="GET" action="../search.php"><input type="search" placeholder="Search" name="query"></form>
-	</div>
-</div>
-	  <nav>
+	<nav>
 		  <ul>
 		    <li>
 		      <a href="adminpanel.php">Admin Panel</a>
@@ -71,3 +67,5 @@
 		    </li>
 		  </ul>
 		</nav>
+</div>
+	  

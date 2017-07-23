@@ -65,16 +65,20 @@
 	<p> 
 	<?php
 		$sql = "SELECT * FROM `companies` 
-			WHERE `address` LIKE LOWER('%" . $_GET['query'] . "%')  
-			OR `category` LIKE LOWER('%" . $_GET['query'] .  "%') 
-			OR `city` LIKE LOWER('%" . $_GET['query'] . "%') 
-			OR `email` LIKE LOWER('%" . $_GET['query'] . "%') 
-			OR `name` LIKE LOWER('%" . $_GET['query'] . "%') 
-			OR `phone` LIKE LOWER('%" . $_GET['query'] . "%')";
+			WHERE `address` LIKE LOWER(?) 
+			OR `category` LIKE LOWER(?) 
+			OR `city` LIKE LOWER(?) 
+			OR `email` LIKE LOWER(?) 
+			OR `name` LIKE LOWER(?) 
+			OR `phone` LIKE LOWER(?)";
 		echo("Your search results for: " . $_GET['query'] . "<br /><br />");
 		echo("<i>Companies</i><br />");
 
-		$result = $conn->query($sql);
+		$stmt = $conn->prepare($sql);
+		$query = "%" . $_GET['query'] . "%";
+		$stmt->bind_param("ssssss", $query, $query, $query, $query, $query, $query);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
 		if($result->num_rows > 0) {
 			echo("<table class='companies' id='companies'>");
@@ -91,10 +95,13 @@
 		echo("<i>Pages</i><br />");
 
 		$sql2 = "SELECT * FROM `text_content` 
-			WHERE `id` LIKE LOWER('%" . $_GET['query'] . "%') 
-			OR `content` LIKE LOWER('%" . $_GET['query'] . "%')";
+			WHERE `id` LIKE LOWER(?) 
+			OR `content` LIKE LOWER(?)";
 
-		$result2 = $conn->query($sql2);
+		$stmt2 = $conn->prepare($sql2);
+		$stmt2->bind_param("ss", $query, $query);
+		$stmt2->execute();
+		$result2 = $stmt2->get_result();
 
 		if($result2->num_rows > 0) {
 			while($row2 = mysqli_fetch_array($result2)) {

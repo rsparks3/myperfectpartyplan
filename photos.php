@@ -22,7 +22,7 @@
 	<?php include("header.php"); ?>
 
 	<div class="content">
-	<p style="margin-top:-80px;"> 
+	<p> 
 	<?php
 	include('resources/UberGallery.php');
 	$gallery = UberGallery::init()->createGallery('images/photos');
