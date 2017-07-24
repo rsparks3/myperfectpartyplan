@@ -28,6 +28,16 @@
 			loginDialog.style.visibility = 'hidden';
 			createDialog.style.visibility = 'hidden';
 		}
+
+		function checkPassword() {
+			var pass = document.getElementById("password");
+			var confirmpass = document.getElementById("confirmpassword");
+			if(pass.value == confirmpass.value) {
+				document.getElementById("confirmicon").src = "images/icons/greencheck.ico";
+			} else {
+				document.getElementById("confirmicon").src = "images/icons/redx.ico";
+			}
+		}
 	</script>
 	<style>
 	#screenmask {
@@ -85,8 +95,25 @@
 		border:0;
 	}
 
+	#createDialog table td:nth-child(2) {
+		text-align: left;
+	}
+
 	#createDialog table {
 		margin:auto;
+	}
+
+	.accountbutton {
+		border:1px solid black;
+		border-radius:4px;
+		-moz-border-radius:4px;
+		-webkit-border-radius:4px;
+		background:#eee;
+		padding:5px;
+	}
+
+	.accountbutton:focus {
+		outline:none;
 	}
 	</style>
 </head>
@@ -97,11 +124,11 @@
 
 	<div class="content"><p>
 		<?php
-		if(isset($_SESSION['username'])) {
-			echo("Welcome " . $_SESSION['username']);
+		if(isset($_SESSION['uuid'])) {
+			echo("Welcome " . $_SESSION['uuid']);
 		} else {
-			?>
-			<button class="accountbutton" onclick="openCreateDialog()">Create an account!</button> or <button class="accountbutton" onclick="openLoginDialog()">Login</button> to continue.
+			?><center>
+			<button class="accountbutton" onclick="openCreateDialog()">Create an account!</button> or <button class="accountbutton" onclick="openLoginDialog()">Login</button> to continue.</center>
 			<?php
 		}
 		?>
@@ -118,10 +145,10 @@
 	<div id="createDialog">
 		<form method="POST" action="createaccount.php">
 			<table>
-			<tr><td>Name</td><td><input type="text" style="width:100px;margin-right:0;" name='fname' placeholder="First" /><input type="text" style="width:100px;margin-left:0;" name='lname' placeholder="Last" /></td></tr>
-			<tr><td>Email</td><td><input type="text" name='email' placeholder="Email" /></td></tr>
-			<tr><td>Password</td><td><input type="password" name="password" placeholder="Password" /></td></tr>
-			<tr><td>Confirm Password</td><td><input type="password" name="confirmpassword" placeholder="Confirm" /></td></tr>
+			<tr><td>Name</td><td><input type="text" style="width:100px;margin-right:0;" name='fname' placeholder="First" required/><input type="text" style="width:100px;margin-left:0;" name='lname' placeholder="Last" required/></td></tr>
+			<tr><td>Email</td><td><input type="text" name='email' placeholder="Email" required/></td></tr>
+			<tr><td>Password</td><td><input type="password" name="password" id="password" placeholder="Password" required/></td></tr>
+			<tr><td>Confirm Password</td><td><input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm" required oninput="checkPassword()"/><img src="images/icons/redx.ico" width="14px" height="14px" id="confirmicon"></td></tr>
 			</table>
 			<input type="submit" value="Create account!" /><br />
 		</form>
