@@ -6,6 +6,5 @@
 			<li><a href="locations.php">Directory</a></li>
 			<li><a href="photos.php">Photos</a></li>
 			<li><a href="#">Plan it!</a></li>
-			<li><div class="search" style="margin-top:-10px;padding-right:50px;">	<form method="GET" action="search.php"><input type="search" placeholder="Search" name="query"></form></div></li>
 	</ul></nav>
 </div>
