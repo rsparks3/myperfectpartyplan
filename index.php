@@ -33,14 +33,15 @@
 			position:absolute;
 			top:45%;
 			left:50%;
-			width:40%;
+			width:35%;
+			min-width:100px;
 			transform:translateX(-50%);
 			
 			display: inline-block;
 			  -webkit-box-sizing: content-box;
 			  -moz-box-sizing: content-box;
 			  box-sizing: content-box;
-			  padding: 20px 25px;
+			  padding: 15px 25px;
 			  border-radius: 6px;
 			  border:0;
 			  font: normal 16px/normal "Trebuchet MS", Helvetica, sans-serif;

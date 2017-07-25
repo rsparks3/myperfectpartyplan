@@ -12,7 +12,7 @@
 			  $('#map').usmap({
 			  	'stateStyles': {
 			  		fill: '#8800BA',
-			  		"stroke-width": 2,
+			  		"stroke-width": 1.5,
 			  		'stroke' : '#5F0082'
 			  	},
 			  	'stateHoverStyles': {
@@ -20,7 +20,8 @@
 			  	},
 			  	'click' : function(event, data) {
 			  		window.location.href = 'states.php?state=' + data.name;
-			  	}
+			  	},
+			  	'stateHoverAnimation' : 150
 			  });
 		});
 	</script>
@@ -32,7 +33,7 @@
 
 	<div class="content" style="text-align:center;"> <br />
 		<h2 style="margin:auto; font-family:'Trebuchet MS'; color:#63004D;">Where's your party at?</h2><br />
-		<div id="map" style="width:800px; height:800px; margin: auto; "></div>
+		<div id="map" style="width:800px; height:600px; margin: auto; "></div>
 
 	</div>
 
