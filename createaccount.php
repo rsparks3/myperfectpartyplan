@@ -18,6 +18,27 @@ if($stmt -> execute()) {
 	if($uuidresult->num_rows > 0) {
 		$row = mysqli_fetch_array($uuidresult);
 		$_SESSION['uuid'] = $row['uuid'];
+
+		//Create file storage area
+		$filepath = "resources/userdata/" . $row['uuid'] . ".json";
+		$datafile = fopen($filepath, "w");
+
+		class User {
+			public $fname = '';
+			public $lname = '';
+			public $email = '';
+			public $uuid = '';
+		}
+
+		$userinfo = new User();
+		$userinfo->fname = $_POST['fname'];
+		$userinfo->lname = $_POST['lname'];
+		$userinfo->email = $_POST['email'];
+		$userinfo->uuid = $row['uuid'];
+
+		$JSONdata = json_encode($userinfo);
+		fwrite($datafile, $JSONdata);
+		fclose($datafile);
 		echo("<script>alert('Successfully created account!'); window.location='planit.php';</script>");
 	}
 	

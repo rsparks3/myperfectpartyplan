@@ -125,7 +125,16 @@
 	<div class="content"><p>
 		<?php
 		if(isset($_SESSION['uuid'])) {
-			echo("Welcome " . $_SESSION['uuid']);
+			$filepath = "resources/userdata/" . $_SESSION['uuid'] . ".json";
+			$udatastring = file_get_contents($filepath);
+			$udata = json_decode($udatastring, true);
+			echo("Welcome " . $udata['fname'] . "<br />");
+
+			echo("<span class='title'>Party Name</span><input type='text' name='name' id='name' value='Test'></input><br />");
+			echo("<span class='title'>Event Date</span><input type='text' name='date' id='date'value='Date'></input><br />");
+			echo("<span class='title'>Event Host(s)</span><input type='text' name='host' id='host' value='Host'></input><br />");
+
+			echo("<a href='admin/logout.php'>Log out</a>"); 
 		} else {
 			?><center>
 			<button class="accountbutton" onclick="openCreateDialog()">Create an account!</button> or <button class="accountbutton" onclick="openLoginDialog()">Login</button> to continue.</center>
