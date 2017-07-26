@@ -4,7 +4,9 @@
 <head>
 	<title>Plan your party!</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="planit/planit.css">
 	<?php include("connect.php"); ?>
+	<script src="jquery.min.js"></script>
 	<script>
 		function openCreateDialog() {
 			var screenMask = document.getElementById("screenmask");
@@ -38,133 +40,120 @@
 				document.getElementById("confirmicon").src = "images/icons/redx.ico";
 			}
 		}
+
+		function createParty() {
+			var data = {
+				name : document.getElementById('pname').value,
+				host : document.getElementById('host').value,
+				location : document.getElementById('location').value,
+				contact1 : document.getElementById('contact1').value
+			}
+
+			$.ajax({
+				url:"planit/createuserparty.php",
+				data: data,
+				type:"GET"
+			}).done(function(json) {
+				updateParty();
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Sorry there was a problem: " + errorThrown);
+			});
+		}
+
+		function createPartyButtonClicked() {
+			$("#partyname").detach();
+			$("#addicon").detach();
+			$("#party").append("<span class='editable'><input type='text' id='pname' value='Party Name'></input></span><br />");
+			$("#party").append("<span class='editable'><input type='text' id='host' value='Host'></input></span><br />");
+			$("#party").append("<span class='editable'><input type='text' id='location' value='Location'></input></span><br />");
+			$("#party").append("<span class='editable'><input type='text' id='contact1' value='Contacts'></input></span><br />");
+			$("#party").append("<input type='submit' onclick='createParty()'></input>");
+		}
+
+		function updateParty() {
+			$.ajax({
+				url:"planit/getuserparty.php",
+				type:"get",
+				dataType: 'json'
+				}).done(function( json ) {
+					var object = JSON.parse(json);
+					$("#party").empty();
+					var name = $("<span class='editable pname'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var location = $("<span class='editable location'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var host = $("<span class='editable host'>Hosted By: " + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var businesseslabel = $("<span class='pname' style='font-size:18px;'>Businesses You've Selected</span><br />");
+					$("#party").append(name);
+					$("#party").append(location);
+					$("#party").append(host);
+					$("#party").append(businesseslabel);
+
+					if(typeof object['party']['businesses'] == 'undefined') {
+						var nobusinesses = $("<span class='label'>You haven't selected any businesses for this event! Head over to our <a href='locations.php'>directory</a> to find some businesses!</span><br />");
+						$("#party").append(nobusinesses);
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Sorry, we couldn't load your party to plan");
+			});
+			
+		}
 	</script>
-	<style>
-	#screenmask {
-		visibility:hidden;
-		position:fixed;
-		width:100%;
-		height:100%;
-		top:0; left:0;
-		background:rgba(255, 255, 255, 0.6);
-		z-index:300;
-	}
-
-	#loginDialog,
-	#createDialog {
-		visibility:hidden;
-		position:fixed;
-		top:40%;
-		left:50%;
-		transform:translate(-50%, -50%);
-		width:500px;
-		z-index:400;
-		background-color:#fff;
-		border-radius:8px;
-		-moz-border-radius:8px;
-		-webkit-border-radius:8px;
-		box-shadow:0px 0px 14px 3px rgba(0, 0, 0, 0.45);
-		-moz-box-shadow:0px 0px 14px 3px rgba(0, 0, 0, 0.45);
-		-webkit-box-shadow:0px 0px 14px 3px rgba(0, 0, 0, 0.45);
-		text-align:center;
-		padding:20px 5px 20px;
-	}
-
-	#loginDialog input,
-	#createDialog input {
-		padding:5px;
-		margin:10px;
-		width:200px;
-		border:0px;
-	}
-
-	#loginDialog input:focus,
-	#createDialog input:focus {
-		outline:none;
-	}
-
-	#loginDialog input[type=text],
-	#loginDialog input[type=password],
-	#createDialog input[type=text],
-	#createDialog input[type=password] {
-		border-bottom:1px dashed;
-	}
-
-	#createDialog table,
-	#createDialog table td {
-		border:0;
-	}
-
-	#createDialog table td:nth-child(2) {
-		text-align: left;
-	}
-
-	#createDialog table {
-		margin:auto;
-	}
-
-	.accountbutton {
-		border:1px solid black;
-		border-radius:4px;
-		-moz-border-radius:4px;
-		-webkit-border-radius:4px;
-		background:#eee;
-		padding:5px;
-	}
-
-	.accountbutton:focus {
-		outline:none;
-	}
-	</style>
 </head>
 
 <body>
 
 	<?php include("header.php"); ?>
 
-	<div class="content"><p>
 		<?php
 		if(isset($_SESSION['uuid'])) {
 			$filepath = "resources/userdata/" . $_SESSION['uuid'] . ".json";
 			$udatastring = file_get_contents($filepath);
 			$udata = json_decode($udatastring, true);
-			echo("Welcome " . $udata['fname'] . "<br />");
 
-			echo("<span class='title'>Party Name</span><input type='text' name='name' id='name' value='Test'></input><br />");
-			echo("<span class='title'>Event Date</span><input type='text' name='date' id='date'value='Date'></input><br />");
-			echo("<span class='title'>Event Host(s)</span><input type='text' name='host' id='host' value='Host'></input><br />");
+			?> <div id="userbar"> <?php 
+			echo("<span class='welcome'>Welcome " . $udata['fname'] . "</span>");
 
-			echo("<a href='admin/logout.php'>Log out</a>"); 
+			?> <span class='logout'><a href='admin/logout.php'>Log out</a></div>
+			<div class="content"><p>
+				<div id="party">
+					<span id="partyname">Create a party</span><img src="images/icons/greenplus.ico" onclick="createPartyButtonClicked()" alt="Create" width="20" height="20" id="addicon"/>
+				</div>
+			<?php
 		} else {
 			?><center>
 			<button class="accountbutton" onclick="openCreateDialog()">Create an account!</button> or <button class="accountbutton" onclick="openLoginDialog()">Login</button> to continue.</center>
 			<?php
 		}
 		?>
-	</p></div>
+	</p>
 
-	<div id="screenmask" onclick="escape()"></div>
-	<div id="loginDialog">
-		<form method="POST" action="login.php">
-			<input type="text" name="email" placeholder="Email" /><br />
-			<input type="password" name="password" placeholder="Password" /><br />
-			<input type="submit" value="Login" />
-		</form>
+		<div id="screenmask" onclick="escape()"></div>
+		<div id="loginDialog">
+			<form method="POST" action="login.php">
+				<input type="text" name="email" placeholder="Email" /><br />
+				<input type="password" name="password" placeholder="Password" /><br />
+				<input type="submit" value="Login" />
+			</form>
+		</div>
+		<div id="createDialog">
+			<form method="POST" action="createaccount.php">
+				<table>
+				<tr><td>Name</td><td><input type="text" style="width:100px;margin-right:0;" name='fname' placeholder="First" required/><input type="text" style="width:100px;margin-left:0;" name='lname' placeholder="Last" required/></td></tr>
+				<tr><td>Email</td><td><input type="text" name='email' placeholder="Email" required/></td></tr>
+				<tr><td>Password</td><td><input type="password" name="password" id="password" placeholder="Password" required/></td></tr>
+				<tr><td>Confirm Password</td><td><input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm" required oninput="checkPassword()"/><img src="images/icons/redx.ico" width="14px" height="14px" id="confirmicon"></td></tr>
+				</table>
+				<input type="submit" value="Create account!" /><br />
+			</form>
+		</div>
 	</div>
-	<div id="createDialog">
-		<form method="POST" action="createaccount.php">
-			<table>
-			<tr><td>Name</td><td><input type="text" style="width:100px;margin-right:0;" name='fname' placeholder="First" required/><input type="text" style="width:100px;margin-left:0;" name='lname' placeholder="Last" required/></td></tr>
-			<tr><td>Email</td><td><input type="text" name='email' placeholder="Email" required/></td></tr>
-			<tr><td>Password</td><td><input type="password" name="password" id="password" placeholder="Password" required/></td></tr>
-			<tr><td>Confirm Password</td><td><input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm" required oninput="checkPassword()"/><img src="images/icons/redx.ico" width="14px" height="14px" id="confirmicon"></td></tr>
-			</table>
-			<input type="submit" value="Create account!" /><br />
-		</form>
-	</div>
-
 	<div class="footer">
 	<?php include("footer.php"); ?>
 	</div>
+
+	<script>
+	$(document).ready(function() {
+		updateParty();
+	});
+	</script>
 </body>
 </html>
