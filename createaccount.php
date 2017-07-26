@@ -27,14 +27,12 @@ if($stmt -> execute()) {
 			public $fname = '';
 			public $lname = '';
 			public $email = '';
-			public $uuid = '';
 		}
 
 		$userinfo = new User();
 		$userinfo->fname = $_POST['fname'];
 		$userinfo->lname = $_POST['lname'];
 		$userinfo->email = $_POST['email'];
-		$userinfo->uuid = $row['uuid'];
 
 		$JSONdata = json_encode($userinfo);
 		fwrite($datafile, $JSONdata);
