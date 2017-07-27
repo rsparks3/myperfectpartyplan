@@ -1,3 +1,11 @@
+html {
+	height:100%;
+}
+
+body {
+	min-height:100%;
+}
+
 body {
 	background-image: url('background.png');
 	font-family:"Helvetica";
@@ -44,6 +52,9 @@ body {
 	margin:auto;
 	padding:20px;
 	text-align:center;
+	position:absolute;
+	bottom:0;
+	display:block;
 }
 
 .footer a {

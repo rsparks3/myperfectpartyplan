@@ -1,11 +1,10 @@
-<?php session_start() ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Plan your party!</title>
-
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="stylesheet" type="text/css" href="planit/planit.css">
+		<link rel="stylesheet" type="text/css" href="planit/planit.css">
 
 	<?php include("connect.php"); ?>
 	<script src="jquery.min.js"></script>
@@ -79,9 +78,9 @@
 				}).done(function( json ) {
 					var object = JSON.parse(json);
 					$("#party").empty();
-					var name = $("<span class='editable pname'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var location = $("<span class='editable location'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var host = $("<span class='editable host'>Hosted By: " + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var name = $("<span class='editable pname' onclick='edit(this)'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var location = $("<span class='editable location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var host = $("<span class='editable host' onclick='edit(this)'>Hosted By: " + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var businesseslabel = $("<span class='pname' style='font-size:18px;'>Businesses You've Selected</span><br />");
 					$("#party").append(name);
 					$("#party").append(location);
@@ -117,7 +116,7 @@
 								card.append(bemail);
 								var burl = $("<span class='url'><a href='" + businessobject['url'] + "'>" + businessobject['url'] + "</a></span><br />");
 								card.append(burl);
-								var bcategory = $("<span class='category'>" . businessobject['category'] + "</span><br />");
+								var bcategory = $("<span class='category'>" + businessobject['category'] + "</span><br />");
 								card.append(bcategory);
 
 							}).fail(function(xhr, status, errorThrown) {
@@ -134,10 +133,11 @@
 </head>
 
 <body>
+
 	<?php include("header.php"); ?>
 
 	<div class="content">
-		<?php
+	<?php
 		if(isset($_SESSION['uuid'])) {
 			$filepath = "resources/userdata/" . $_SESSION['uuid'] . ".json";
 			$udatastring = file_get_contents($filepath);
@@ -146,7 +146,7 @@
 			?> 
 			<div id="userbar">
 				<span class='welcome'>Welcome <?php $udata['fname'] ?></span>
-				<span class='logout'><a href='admin/logout.php'>Log out</a>
+				<span class='logout'><a href='admin/logout.php'>Log out</a></span>
 			</div>
 			<div id="party">
 				<span id="partyname">Create a party</span><img src="images/icons/greenplus.ico" onclick="createPartyButtonClicked()" alt="Create" width="20" height="20" id="addicon" />
