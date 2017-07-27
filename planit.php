@@ -78,9 +78,9 @@
 				}).done(function( json ) {
 					var object = JSON.parse(json);
 					$("#party").empty();
-					var name = $("<span class='editable pname' onclick='edit(this)'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var location = $("<span class='editable location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var host = $("<span class='editable host' onclick='edit(this)'>Hosted By: " + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var name = $("<span class='editable pname' id='pname' onclick='edit(this)'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var location = $("<span class='editable location' id='location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var host = $("<span class='editable host' id='host' onclick='edit(this)'>Hosted By: " + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var businesseslabel = $("<span class='pname' style='font-size:18px;'>Businesses You've Selected</span><br />");
 					$("#party").append(name);
 					$("#party").append(location);
@@ -130,6 +130,12 @@
 							
 						}
 					}
+
+					$("#party").append("<br />");
+					var editPartyButton = $("<button onclick='editParty()' value='Edit Party'>Edit Party</button>");
+					$("#party").append(editPartyButton);
+					var deletePartyButton = $("<button onclick='deleteParty()' value='Delete Party'>Delete Party</button>");
+					$("#party").append(deletePartyButton);
 				}).fail(function(xhr, status, errorThrown) {
 			});
 			
@@ -152,6 +158,17 @@
 				alert("failed: " + errorThrown);
 			});
 		}
+
+		function edit(element) {
+			var id = $(element).attr('id');
+
+			$(element).replaceWith("<input type='text' name='" + id + "' value='" + $(element).text() + "' />");
+		}
+
+		function(editParty()) {
+			
+		}
+
 	</script>
 </head>
 
