@@ -3,8 +3,10 @@
 <html>
 <head>
 	<title>Plan your party!</title>
+
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="planit/planit.css">
+
 	<?php include("connect.php"); ?>
 	<script src="jquery.min.js"></script>
 	<script>
@@ -47,7 +49,7 @@
 				host : document.getElementById('host').value,
 				location : document.getElementById('location').value,
 				contact1 : document.getElementById('contact1').value
-			}
+			};
 
 			$.ajax({
 				url:"planit/createuserparty.php",
@@ -56,7 +58,6 @@
 			}).done(function(json) {
 				updateParty();
 			}).fail(function(xhr, status, errorThrown) {
-				alert("Sorry there was a problem: " + errorThrown);
 			});
 		}
 
@@ -90,9 +91,42 @@
 					if(typeof object['party']['businesses'] == 'undefined') {
 						var nobusinesses = $("<span class='label'>You haven't selected any businesses for this event! Head over to our <a href='locations.php'>directory</a> to find some businesses!</span><br />");
 						$("#party").append(nobusinesses);
+					} else {
+						for(var i = 0; i < object['party']['businesses'].length; i++) {
+							var data = {
+								acctid : object['party']['businesses'][i]['acctid']
+							}
+
+							$.ajax({
+								url:"planit/getbusiness.php",
+								type:"get",
+								data:data,
+							}).done(function(businessobjectstring) {
+								var businessobject = JSON.parse(businessobjectstring);
+								var card = $("<div class='card'></div>");
+								$("#party").append(card);
+								var bname = $("<span class='businessname'><a href='" + businessobject['url'] + "'>" + businessobject['name'] + "</a></span><br />");
+								card.append(bname);
+								var baddress = $("<span class='data'>" + businessobject['address'] + "</span><br />");
+								card.append(baddress);
+								var bcitystate = $("<span class='data'>" + businessobject['city'] + ", " + businessobject['state'] + "</span><br />");
+								card.append(bcitystate);
+								var bphone = $("<span class='data'>" + businessobject['phone'] + "</span><br />");
+								card.append(bphone);
+								var bemail = $("<span class='data'>" + businessobject['email'] + "</span><br />");
+								card.append(bemail);
+								var burl = $("<span class='url'><a href='" + businessobject['url'] + "'>" + businessobject['url'] + "</a></span><br />");
+								card.append(burl);
+								var bcategory = $("<span class='category'>" . businessobject['category'] + "</span><br />");
+								card.append(bcategory);
+
+							}).fail(function(xhr, status, errorThrown) {
+								alert("Failed" + errorThrown);
+							});
+							
+						}
 					}
 				}).fail(function(xhr, status, errorThrown) {
-					alert("Sorry, we couldn't load your party to plan");
 			});
 			
 		}
@@ -100,23 +134,23 @@
 </head>
 
 <body>
-
 	<?php include("header.php"); ?>
 
+	<div class="content">
 		<?php
 		if(isset($_SESSION['uuid'])) {
 			$filepath = "resources/userdata/" . $_SESSION['uuid'] . ".json";
 			$udatastring = file_get_contents($filepath);
 			$udata = json_decode($udatastring, true);
 
-			?> <div id="userbar"> <?php 
-			echo("<span class='welcome'>Welcome " . $udata['fname'] . "</span>");
-
-			?> <span class='logout'><a href='admin/logout.php'>Log out</a></div>
-			<div class="content"><p>
-				<div id="party">
-					<span id="partyname">Create a party</span><img src="images/icons/greenplus.ico" onclick="createPartyButtonClicked()" alt="Create" width="20" height="20" id="addicon"/>
-				</div>
+			?> 
+			<div id="userbar">
+				<span class='welcome'>Welcome <?php $udata['fname'] ?></span>
+				<span class='logout'><a href='admin/logout.php'>Log out</a>
+			</div>
+			<div id="party">
+				<span id="partyname">Create a party</span><img src="images/icons/greenplus.ico" onclick="createPartyButtonClicked()" alt="Create" width="20" height="20" id="addicon" />
+			</div>
 			<?php
 		} else {
 			?><center>
@@ -124,9 +158,9 @@
 			<?php
 		}
 		?>
-	</p>
 
-		<div id="screenmask" onclick="escape()"></div>
+		<div id="screenmask" onclick="escape()">
+		</div>
 		<div id="loginDialog">
 			<form method="POST" action="login.php">
 				<input type="text" name="email" placeholder="Email" /><br />
@@ -146,10 +180,10 @@
 			</form>
 		</div>
 	</div>
+
 	<div class="footer">
 	<?php include("footer.php"); ?>
 	</div>
-
 	<script>
 	$(document).ready(function() {
 		updateParty();

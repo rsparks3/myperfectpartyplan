@@ -97,6 +97,7 @@
 	min-width:400px;
 	background-color:#ffffff;
 	margin:auto;
+	margin-top:30px;
 	padding:5px;
 	position:relative;
 	-webkit-border-radius:5px;
@@ -168,4 +169,39 @@
 .host {
 	margin-left:30px;
 	font-style:italic;
+}
+
+.card {
+	display:inline-block;
+	position:relative;
+	margin:10px;
+	padding:10px;
+	background-color:#FDFDFD;
+	text-align:center;
+	width:300px;
+
+	-webkit-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
+	-moz-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
+	box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
+	border-radius: 9px 9px 9px 9px;
+	-moz-border-radius: 9px 9px 9px 9px;
+	-webkit-border-radius: 9px 9px 9px 9px;
+}
+
+.card .businessname {
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.card .businessname a {
+	text-decoration:none;
+	color:#000;
+}
+
+.card .addbutton {
+	position:absolute;
+	top:5px;
+	right:5px;
+	padding:3px;
+	cursor:pointer;
 }

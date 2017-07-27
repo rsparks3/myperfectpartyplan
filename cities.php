@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Aboot this site</title>
@@ -5,7 +7,24 @@
     <link rel="stylesheet" type="text/css" href="tables.css">
     <?php include("connect.php"); ?>
 
+    <script src="jquery.min.js"></script>
     <script>
+    	function addBusiness(acctid) {
+    		var data = {
+    			acctid : acctid
+    		};
+
+    		$.ajax({
+    			url:"planit/addbusiness.php",
+    			data:data,
+    			type:"GET"
+    		}).done(function(result) {
+    			alert("The business was added to your party plan successfully. ");
+    		}).fail(function(xhr, status, errorThrown) {
+    			alert("Could not add business");
+    		})
+    	}
+
 		function sortTable(n) {
 		  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 		  table = document.getElementById("companies");
@@ -59,6 +78,7 @@
 	<style>
 		.card {
 			display:inline-block;
+			position:relative;
 			margin:10px;
 			padding:10px;
 			background-color:#FDFDFD;
@@ -82,6 +102,14 @@
 			text-decoration:none;
 			color:#000;
 		}
+
+		.card .addbutton {
+			position:absolute;
+			top:5px;
+			right:5px;
+			padding:3px;
+			cursor:pointer;
+		}
 	</style>
 </head>
 
@@ -98,6 +126,11 @@
 
             while($row = mysqli_fetch_array($result)) {
             	echo("<div class='card'>");
+
+            	if(isset($_SESSION['uuid'])) {
+            		echo("<div title='Click to add this company to your party!'><img class='addbutton' src='images/icons/greenplus.ico' width='15' height='15' onclick='addBusiness(" . $row['acctid'] . ")'/></div>");
+            	}
+
             	echo("<span class='businessname'><a href='" . $row['url'] . "'>" . $row['name'] . "</a></span><br />");
             	echo("<span class='data'>" . $row['address'] . "</span><br />");
             	echo("<span class='data'>" . $_GET['city'] . ", " . $_GET['state'] . "</span><br />");

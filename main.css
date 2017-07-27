@@ -1,6 +1,7 @@
 body {
 	background-image: url('background.png');
 	font-family:"Helvetica";
+	position:relative;
 }
 
 .header {
@@ -41,9 +42,6 @@ body {
 	background-color:#340059;
 	color:#DDD3FF;
 	margin:auto;
-	position:absolute;
-
-	bottom:0;
 	padding:20px;
 	text-align:center;
 }
