@@ -205,3 +205,10 @@
 	padding:3px;
 	cursor:pointer;
 }
+
+.card img {
+	position:absolute;
+	top: 5px;
+	right:5px;
+	display:inline-block;
+}

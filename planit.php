@@ -87,13 +87,16 @@
 					$("#party").append(host);
 					$("#party").append(businesseslabel);
 
-					if(typeof object['party']['businesses'] == 'undefined') {
+					if(typeof object['party']['businesses'] == 'undefined' || object['party']['businesses'] == '') {
 						var nobusinesses = $("<span class='label'>You haven't selected any businesses for this event! Head over to our <a href='locations.php'>directory</a> to find some businesses!</span><br />");
 						$("#party").append(nobusinesses);
 					} else {
 						for(var i = 0; i < object['party']['businesses'].length; i++) {
+
+							var businessid = object['party']['businesses'][i]['acctid']
+
 							var data = {
-								acctid : object['party']['businesses'][i]['acctid']
+								acctid : businessid
 							}
 
 							$.ajax({
@@ -106,6 +109,8 @@
 								$("#party").append(card);
 								var bname = $("<span class='businessname'><a href='" + businessobject['url'] + "'>" + businessobject['name'] + "</a></span><br />");
 								card.append(bname);
+								var bremove = $("<img src='images/icons/redminus.ico' onclick='removeBusiness(" + businessobject['acctid'] + ");'></img>");
+								card.append(bremove);
 								var baddress = $("<span class='data'>" + businessobject['address'] + "</span><br />");
 								card.append(baddress);
 								var bcitystate = $("<span class='data'>" + businessobject['city'] + ", " + businessobject['state'] + "</span><br />");
@@ -128,6 +133,24 @@
 				}).fail(function(xhr, status, errorThrown) {
 			});
 			
+		}
+
+		function removeBusiness(acctid) {
+
+			var data = {
+				acctid : acctid
+			}
+
+			$.ajax({
+				url: "planit/removebusiness.php",
+				type: "get",
+				data: data
+			}).done(function(success) {
+				alert("success: " + success);
+				updateParty();
+			}).fail(function(xhr, status, errorThrown) {
+				alert("failed: " + errorThrown);
+			});
 		}
 	</script>
 </head>

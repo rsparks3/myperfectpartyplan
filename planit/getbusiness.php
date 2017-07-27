@@ -10,7 +10,7 @@ $result = $stmt->get_result();
 
 if($result->num_rows > 0) {
 	$row = mysqli_fetch_array($result);
-	$data = array('name'=>$row['name'], 'address'=>$row['address'], 'city'=>$row['city'], 'state'=>$row['state'], 'phone'=>$row['phone'], 'email'=>$row['email'], 'url'=>$row['url'], 'category'=>$row['category']);
+	$data = array('name'=>$row['name'], 'address'=>$row['address'], 'city'=>$row['city'], 'state'=>$row['state'], 'phone'=>$row['phone'], 'email'=>$row['email'], 'url'=>$row['url'], 'category'=>$row['category'], 'acctid'=>$row['acctid']);
 	$jsonstring = json_encode($data);
 	echo($jsonstring);
 }
