@@ -8,7 +8,7 @@
 
     <script src="jquery.min.js"></script>
     <script>
-    	function addBusiness(acctid) {
+    	function addBusiness(acctid, element) {
     		var data = {
     			acctid : acctid
     		};
@@ -21,7 +21,9 @@
     			alert("The business was added to your party plan successfully. ");
     		}).fail(function(xhr, status, errorThrown) {
     			alert("Could not add business");
-    		})
+    		});
+
+    		$(element).detach();
     	}
 
 		function sortTable(n) {
@@ -127,7 +129,7 @@
             	echo("<div class='card'>");
 
             	if(isset($_SESSION['uuid'])) {
-            		echo("<div title='Click to add this company to your party!'><img class='addbutton' src='images/icons/greenplus.ico' width='15' height='15' onclick='addBusiness(" . $row['acctid'] . ")'/></div>");
+            		echo("<div title='Click to add this company to your party!'><img class='addbutton' src='images/icons/greenplus.ico' width='15' height='15' onclick='addBusiness(" . $row['acctid'] . ", this)'/></div>");
             	}
 
             	echo("<span class='businessname'><a href='" . $row['url'] . "'>" . $row['name'] . "</a></span><br />");

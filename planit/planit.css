@@ -127,7 +127,8 @@
 	padding:5px;
 }
 
-#party input[type=submit] {
+#party input[type=submit],
+#party button {
 	padding:10px;
 	margin:10px;
 	background-color:#DBC6FF;

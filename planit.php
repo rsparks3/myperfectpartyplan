@@ -9,6 +9,7 @@
 	<?php include("connect.php"); ?>
 	<script src="jquery.min.js"></script>
 	<script>
+
 		function openCreateDialog() {
 			var screenMask = document.getElementById("screenmask");
 			var createDialog = document.getElementById("createDialog");
@@ -79,8 +80,8 @@
 					var object = JSON.parse(json);
 					$("#party").empty();
 					var name = $("<span class='editable pname' id='pname' onclick='edit(this)'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var location = $("<span class='editable location' id='location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var host = $("<span class='editable host' id='host' onclick='edit(this)'>Hosted By: " + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var location = $("<span class='location'>Location: </span><span class='editable location' id='location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var host = $("<span class='host'>Hosted by: </span><span class='editable host' id='host' onclick='edit(this)'>" + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var businesseslabel = $("<span class='pname' style='font-size:18px;'>Businesses You've Selected</span><br />");
 					$("#party").append(name);
 					$("#party").append(location);
@@ -90,6 +91,11 @@
 					if(typeof object['party']['businesses'] == 'undefined' || object['party']['businesses'] == '') {
 						var nobusinesses = $("<span class='label'>You haven't selected any businesses for this event! Head over to our <a href='locations.php'>directory</a> to find some businesses!</span><br />");
 						$("#party").append(nobusinesses);
+						$("#party").append("<br /><br />");
+						var editPartyButton = $("<button onclick='editParty()' value='Edit Party'>Edit Party</button>");
+						$("#party").append(editPartyButton);
+						var deletePartyButton = $("<button onclick='deleteParty()' value='Delete Party'>Delete Party</button>");
+						$("#party").append(deletePartyButton);
 					} else {
 						for(var i = 0; i < object['party']['businesses'].length; i++) {
 
@@ -123,19 +129,19 @@
 								card.append(burl);
 								var bcategory = $("<span class='category'>" + businessobject['category'] + "</span><br />");
 								card.append(bcategory);
-
 							}).fail(function(xhr, status, errorThrown) {
 								alert("Failed" + errorThrown);
 							});
-							
 						}
+
+						$("#party").append("<br /><br />");
+						var editPartyButton = $("<button onclick='editParty()' value='Edit Party'>Edit Party</button>");
+						$("#party").append(editPartyButton);
+						var deletePartyButton = $("<button onclick='deleteParty()' value='Delete Party'>Delete Party</button>");
+						$("#party").append(deletePartyButton);
 					}
 
-					$("#party").append("<br />");
-					var editPartyButton = $("<button onclick='editParty()' value='Edit Party'>Edit Party</button>");
-					$("#party").append(editPartyButton);
-					var deletePartyButton = $("<button onclick='deleteParty()' value='Delete Party'>Delete Party</button>");
-					$("#party").append(deletePartyButton);
+					
 				}).fail(function(xhr, status, errorThrown) {
 			});
 			
@@ -161,12 +167,68 @@
 
 		function edit(element) {
 			var id = $(element).attr('id');
-
-			$(element).replaceWith("<input type='text' name='" + id + "' value='" + $(element).text() + "' />");
+			var newtextfield = $("<input type='text' id='" + id + "' value='" + $(element).text() + "' />")
+			$(element).replaceWith(newtextfield);
+			$(newtextfield).blur(function() {
+				editParty();
+			});
 		}
 
-		function(editParty()) {
+		function editParty() {
+			var partyname;
+			if($("#pname").is("input")) {
+				partyname = $("#pname").val();
+			} else {
+				partyname = $("#pname").text();
+			}
 			
+			var partylocation;
+			if($("#location").is("input")) {
+				partylocation = $("#location").val();
+			} else {
+				partylocation = $("#location").text();
+			}
+
+			var partyhost;
+			if($("#host").is("input")) {
+				partyhost = $("#host").val();
+			} else {
+				partyhost = $("#host").text();
+			}
+
+			var data = {
+				partyname: partyname,
+				partyhost: partyhost,
+				partylocation: partylocation
+			}
+
+			$.ajax({
+				url: "planit/editparty.php",
+				type: "get",
+				data: data
+			}).done(function(received) {
+				updateParty();
+			}).fail(function(xhr, status, errorThrown) {
+				alert("error: " + errorThrown);
+			});
+		}
+
+		function deleteParty() {
+			if(confirm("Are you sure you want to delete this party?")) {
+				$.ajax({
+					url: "planit/deleteparty.php",
+					type: "get"
+				}).done(function(received) {
+					if(received != '') {
+						alert(received);
+					}
+					location.reload();
+				}).fail(function(xhr, status, errorThrown) {
+					alert("error: " + errorThrown);
+				});
+			} else {
+				alert("won't delete");
+			}
 		}
 
 	</script>
