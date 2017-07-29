@@ -30,13 +30,14 @@
 		nav .search {
 			display:none;
 		}
-		.featurephotos .searchbox {
+		#slideshowcontainer .searchbox {
 			position:absolute;
-			top:45%;
+			top:250px;
 			left:50%;
 			width:35%;
 			min-width:100px;
 			transform:translateX(-50%);
+			z-index:;
 			
 			display: inline-block;
 			  -webkit-box-sizing: content-box;
@@ -57,7 +58,7 @@
 			  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 		}
 
-		.featurephotos .searchbox:focus {
+		#slideshowcontainer .searchbox:focus {
 			outline:none;
 		}
 
@@ -67,6 +68,10 @@
 		:-ms-input-placeholder { color:#DDC9FF; }
 		::-ms-input-placeholder { color:#DDC9ff; }
 	</style>
+
+	<script src="jquery.min.js"></script>
+	<script src="bxslider/jquery.bxslider.min.js"></script>
+	<link href="bxslider/jquery.bxslider.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -74,18 +79,26 @@
 	<?php include("header.php"); ?>
 
 	<div class="content">
-		<div class="featurephotos">
-			<img class="slides" src="images/photos/feature1.jpg">
-			<img class="slides" src="images/photos/feature2.jpg">
-			<button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
-			<button class="display-right" onclick="plusDivs(+1)">&#10095;</button>
+		<div id="slideshowcontainer">
+			<ul class="featurephotos">
+				<li><img class="slides" src="images/index/image1.jpg" /></li>
+				<li><img class="slides" src="images/index/image2.jpg" /></li>
+				<li><img class="slides" src="images/index/image3.jpg" /></li>
+				<li><img class="slides" src="images/index/image4.jpg" /></li>
+			</ul>
 			<form method="GET" action="search.php">
-				<input class="searchbox" type="search" name="query" placeholder="Start typing a city to look for businesses">
-		  	</form>
+			<input class="searchbox" type="search" name="query" placeholder="Start typing a city to look for businesses">
+			</form>
 		</div>
 
 		<script>
-		var slideIndex = 1;
+		$(document).ready(function() {
+			$(".featurephotos").bxSlider({
+				auto: true,
+				default:4000
+			});
+		});
+		/*var slideIndex = 1;
 		showDivs(slideIndex);
 
 		function plusDivs(n) {
@@ -101,7 +114,7 @@
 				x[i].style.display = "none";
 			}
 			x[slideIndex-1].style.display = "block";
-		}
+		}*/
 		</script>
 
 	<p> <?php 
