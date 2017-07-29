@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Search Results</title>
@@ -81,13 +83,24 @@
 		$result = $stmt->get_result();
 
 		if($result->num_rows > 0) {
-			echo("<table class='companies' id='companies'>");
-			echo("<thead><tr><th onclick='sortTable(0)'>Company Name</th><th onclick='sortTable(1)'>Website</th><th onclick='sortTable(2)'>Address</th><th onclick='sortTable(3)'>Category</th><th onclick='sortTable(4)'>Phone Number</th><th onclick='sortTable(5)'>Email</th></tr></thead><tbody>");
-
 			while($row = mysqli_fetch_array($result)) {
-				echo("<tr><td>" . $row['name'] . "</td><td>" . $row['url'] . "</td><td>" . $row['address'] . "</td><td>" . $row['category'] . "</td><td>" . $row['phone'] . "</td><td>" . $row['email'] . "</td></tr>");
+				echo("<div class='card'>");
+
+            	if(isset($_SESSION['uuid'])) {
+            		echo("<div title='Click to add this company to your party!'><img class='addbutton' src='images/icons/greenplus.ico' width='15' height='15' onclick='addBusiness(" . $row['acctid'] . ", this)'/></div>");
+            	}
+
+            	echo("<span class='businessname'><a href='" . $row['url'] . "'>" . $row['name'] . "</a></span><br />");
+            	echo("<span class='data'>" . $row['address'] . "</span><br />");
+            	echo("<span class='data'>" . $row['city'] . ", " . $row['state'] . "</span><br />");
+            	echo("<span class='data'>". $row['phone'] . "</span><br />");
+            	echo("<span class='data'>". $row['email'] . "</span><br />");
+            	echo("<span class='url'><a href='" . $row['url'] . "'>" . $row['url'] . "</a></span><br />");
+            	echo("<span class='category'>" . $row['category'] . "</span><br />");
+            	echo("</div>");
 			}
-			echo("</tbody></table><br /><Br />");
+
+			echo("<br />");
 		} else {
 			echo("We didn't find any companies matching your query.  Feel free to try again!<br /><br />");
 		}

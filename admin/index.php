@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Admin Login</title>
-	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<?php include("../connect.php"); ?>
 
 	<style type="text/css">

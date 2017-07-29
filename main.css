@@ -1,9 +1,13 @@
 html {
 	height:100%;
+	margin:0;
+	padding:0;
 }
 
 body {
 	min-height:100%;
+	margin:0;
+	padding:0;
 }
 
 body {
@@ -17,10 +21,7 @@ body {
 	margin:auto;
 	display:flex;
 	justify-content: space-between;
-
-	margin-top:-10px;
-	margin-left:-10px;
-	margin-bottom:10px;
+	margin:0;
 	height:70px;
 }
 
@@ -36,8 +37,8 @@ body {
 	margin:auto;
 
 	min-height: 100px;
-	margin-left:-10px;
-	margin-top:-10px;
+	margin:0;
+	padding:10px;
 	padding-bottom:20px;
 	font-family:"Helvetica";
 }
@@ -49,11 +50,12 @@ body {
 .footer {
 	background-color:#340059;
 	color:#DDD3FF;
-	margin:auto;
 	padding:20px;
 	text-align:center;
 	position:absolute;
 	bottom:0;
+	left:0;
+	right:0;
 	display:block;
 }
 
@@ -63,27 +65,14 @@ body {
 	color:#6159FF;
 }
 
-.content .featurephotos {
-	width:100%;
-	position: relative;
-}
-
-.content .featurephotos img {
-	width:100%;
-	max-height: 400px;
-	object-fit: cover;
-}
-
-.header,
-.content,
-.footer {
+.header{
 	width:100%;
 }
 
 nav {
 	z-index:200;
-	margin-top:-10px;
 	margin-right:10px;
+	margin-top:-10px;
 }
 nav ul {
 	text-align: center;
@@ -145,4 +134,39 @@ nav ul li a:hover {
 }
 .search input::-webkit-input-placeholder {
 	color: #999;
+}
+
+.card {
+	display:inline-block;
+	position:relative;
+	margin:10px;
+	padding:10px;
+	background-color:#FDFDFD;
+	text-align:center;
+	width:300px;
+
+	-webkit-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
+	-moz-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
+	box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
+	border-radius: 9px 9px 9px 9px;
+	-moz-border-radius: 9px 9px 9px 9px;
+	-webkit-border-radius: 9px 9px 9px 9px;
+}
+
+.card .businessname {
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.card .businessname a {
+	text-decoration:none;
+	color:#000;
+}
+
+.card .addbutton {
+	position:absolute;
+	top:5px;
+	right:5px;
+	padding:3px;
+	cursor:pointer;
 }

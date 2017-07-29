@@ -2,14 +2,18 @@
 <head>
 	<title>Aboot this site</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<script src="jquery.min.js"></script>
 	<?php include("connect.php"); ?>
 	<style>
-		#cities {
+		#cities,
+		#categories {
 			padding:10px;
+			margin:10px;
 			width:30%;
 			outline:none;
 		}
-		#cities:focus {
+		#cities:focus,
+		#categories:focus {
 			outline:none;
 		}
 	</style>
@@ -50,8 +54,25 @@
 		var cities = document.getElementById("cities");
 
 		cities.addEventListener("change", function() {
-			document.getElementById("citiesform").submit();
-		})
+			$.ajax({
+				url: "resources/getcategories.php",
+				type: "get"
+			}).done(function(data) {
+				$("#citiesform").append("<br />");
+				$("#citiesform").append("<select id='categories' name='category'></select>");
+				$("#categories").append("<option value=''>Select a category</option>");
+				$("#categories").change(function() {
+					document.getElementById("citiesform").submit();
+				});
+				var dataObject = JSON.parse(data);
+				for(var i = 0; i < dataObject.length; i++) {
+					$("#categories").append("<option value='" + dataObject[i] + "'>" + dataObject[i] + "</option>");
+				}
+			}).fail(function(xhr, status, errorThrown) {
+
+			});
+			//document.getElementById("citiesform").submit();
+		});
 	</script>
 </body>
 </html>

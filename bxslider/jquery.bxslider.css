@@ -4,7 +4,6 @@
 ===================================*/
 .bx-wrapper {
   position: relative;
-  margin-bottom: 60px;
   padding: 0;
   *zoom: 1;
   -ms-touch-action: pan-y;
@@ -28,10 +27,6 @@ ul.bxslider {
 /** THEME
 ===================================*/
 .bx-wrapper {
-  -moz-box-shadow: 0 0 5px #ccc;
-  -webkit-box-shadow: 0 0 5px #ccc;
-  box-shadow: 0 0 5px #ccc;
-  border: 5px solid #fff;
   background: #fff;
 }
 .bx-wrapper .bx-pager,

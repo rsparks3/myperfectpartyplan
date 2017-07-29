@@ -13,7 +13,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 <html>
 <head>
 	<title>Pending Accounts</title>
-	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="../tables.css">
 </head>
 
@@ -39,10 +39,10 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 
 			if($result->num_rows > 0) {
 				echo("<table class='businesses' id='businesses'>");
-				echo("<thead><tr><th>Company Name</th><th>Website</th><th>Primary Contact</th><th>Service Type</th><th>Date Submitted</th><th>Paid</th><th>Override</th></tr></thead><tbody>");
+				echo("<thead><tr><th>Company Name</th><th>Website</th><th>Primary Contact</th><th>Service Type</th><th>Date Submitted</th><th>Paid</th><th>Override Add</th><th>Remove</th></tr></thead><tbody>");
 
 				while($row = mysqli_fetch_array($result)) {
-					echo("<tr><td>" . $row['name'] . "</td><td>" . $row['url'] . "</td><td>" . $row['pcfirst'] . " " . $row['pclast'] . "</td><td>" . $row['servicetype'] . "</td><td>" . $row['datesubmitted'] . "</td><td>" . $row['paid'] . "</td><td><button name='override' value='Override'>Override</button></td></tr>");
+					echo("<tr><td>" . $row['name'] . "</td><td>" . $row['url'] . "</td><td>" . $row['pcfirst'] . " " . $row['pclast'] . "</td><td>" . $row['servicetype'] . "</td><td>" . $row['datesubmitted'] . "</td><td>" . $row['paid'] . "</td><td><button name='override' value='Override'>Override</button></td><td><button name='remove' value='Remove'>Force Remove</td></tr>");
 				}
 				echo("</tbody></table>");
 			} else {

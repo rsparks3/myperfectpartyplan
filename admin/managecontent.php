@@ -13,7 +13,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 <html lang="en">
 <head>
 	<title>Manage Content</title>
-	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<script src='tinymce/tinymce.min.js'></script>
 
 	<!-- DROPDOWN BOX AND SUBMIT BUTTON STYLING -->

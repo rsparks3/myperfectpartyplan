@@ -75,43 +75,6 @@
 		  }
 		}
 	</script>
-
-	<style>
-		.card {
-			display:inline-block;
-			position:relative;
-			margin:10px;
-			padding:10px;
-			background-color:#FDFDFD;
-			text-align:center;
-			width:300px;
-
-			-webkit-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
-			-moz-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
-			box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.64);
-			border-radius: 9px 9px 9px 9px;
-			-moz-border-radius: 9px 9px 9px 9px;
-			-webkit-border-radius: 9px 9px 9px 9px;
-		}
-
-		.card .businessname {
-			text-decoration:none;
-			font-weight:bold;
-		}
-
-		.card .businessname a {
-			text-decoration:none;
-			color:#000;
-		}
-
-		.card .addbutton {
-			position:absolute;
-			top:5px;
-			right:5px;
-			padding:3px;
-			cursor:pointer;
-		}
-	</style>
 </head>
 
 <body>
@@ -120,8 +83,17 @@
 <div class="content" style='padding:20px;'>
     <p>
         <?php 
-        $sql = "SELECT * FROM `companies` WHERE `state`='" . $_GET["state"]. "' AND `city`='" . $_GET["city"] . "'";
-        $result = $conn->query($sql);
+        if($_GET['category'] == 'Misc') {
+	        $sql = "SELECT * FROM `companies` WHERE `state`=? AND `city`=?";
+	        $stmt = $conn->prepare($sql);
+	        $stmt->bind_param("ss", $_GET["state"], $_GET["city"]);
+	    } else {
+	    	$sql = "SELECT * FROM `companies` WHERE `state`=? AND `city`=? AND `category`=?";
+	        $stmt = $conn->prepare($sql);
+	        $stmt->bind_param("sss", $_GET["state"], $_GET["city"], $_GET['category']);
+	    }
+	    $stmt->execute();
+	    $result = $stmt->get_result();
 
         if($result->num_rows > 0) {
 

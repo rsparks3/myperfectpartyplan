@@ -7,7 +7,7 @@ $rank = $_SESSION['rank'];
 <html>
 <head>
 	<title>Admin Panel</title>
-	<link rel="stylesheet" type="text/css" href="../main.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<style type="text/css">
 		.widget {
 			display:inline-block;

@@ -7,29 +7,27 @@
 
 	
 	<style>
-		.display-left, .display-right {
-			cursor:pointer;
-			width:auto;
-			padding:16px;
-			color:white;
-			font-weight:bold;
-			font-size:18px;
-			transition:0.6s ease;
-			border-radius: 0 3px 3px 0;
-			border:none;
-			position:absolute;
-			top:45%;
+		.featurephotos {
+			width:100%;
+			position: relative;
 		}
-		.display-right{
-			right: 0;
-			border-radius: 3px 0 0 3px;
-		}
-		.display-right, .display-left {
-			background-color:rgba(0, 0, 0, 0.8);
+
+		.featurephotos img {
+			width:100%;
+			max-height: 400px;
+			object-fit: cover;
 		}
 		nav .search {
 			display:none;
 		}
+
+		#slideshowcontainer,
+		.featurephotos,
+		.featurephotos img {
+			padding:0;
+			margin:0;
+		}
+
 		#slideshowcontainer .searchbox {
 			position:absolute;
 			top:250px;
@@ -37,7 +35,6 @@
 			width:35%;
 			min-width:100px;
 			transform:translateX(-50%);
-			z-index:;
 			
 			display: inline-block;
 			  -webkit-box-sizing: content-box;
@@ -78,8 +75,7 @@
 
 	<?php include("header.php"); ?>
 
-	<div class="content">
-		<div id="slideshowcontainer">
+	<div id="slideshowcontainer">
 			<ul class="featurephotos">
 				<li><img class="slides" src="images/index/image1.jpg" /></li>
 				<li><img class="slides" src="images/index/image2.jpg" /></li>
@@ -91,6 +87,9 @@
 			</form>
 		</div>
 
+	<div class="content">
+		
+
 		<script>
 		$(document).ready(function() {
 			$(".featurephotos").bxSlider({
@@ -98,23 +97,6 @@
 				default:4000
 			});
 		});
-		/*var slideIndex = 1;
-		showDivs(slideIndex);
-
-		function plusDivs(n) {
-			showDivs(slideIndex += n);
-		}
-
-		function showDivs(n) {
-			var i;
-			var x = document.getElementsByClassName("slides");
-			if(n > x.length) {slideIndex = 1}
-			if(n < 1) {slideIndex = x.length} ;
-			for(i = 0; i < x.length; i++) {
-				x[i].style.display = "none";
-			}
-			x[slideIndex-1].style.display = "block";
-		}*/
 		</script>
 
 	<p> <?php 
