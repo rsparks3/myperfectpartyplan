@@ -213,3 +213,11 @@
 	right:5px;
 	display:inline-block;
 }
+
+#settingsbutton {
+	position:absolute;
+	top:0px;
+	right:0px;
+	cursor:pointer;
+	padding:10px;
+}

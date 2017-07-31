@@ -80,10 +80,12 @@
 					var object = JSON.parse(json);
 					$("#party").empty();
 					var name = $("<span class='editable pname' id='pname' onclick='edit(this)'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
+					var partySettings = $("<img src='images/icons/gear.ico' id='settingsbutton' width='20px' height='20px'></img>");
 					var location = $("<span class='location'>Location: </span><span class='editable location' id='location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var host = $("<span class='host'>Hosted by: </span><span class='editable host' id='host' onclick='edit(this)'>" + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var businesseslabel = $("<span class='pname' style='font-size:18px;'>Businesses You've Selected</span><br />");
 					$("#party").append(name);
+					$("#party").append(partySettings);
 					$("#party").append(location);
 					$("#party").append(host);
 					$("#party").append(businesseslabel);
