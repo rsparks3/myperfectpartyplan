@@ -15,6 +15,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 	<title>Manage Content</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<script src='tinymce/tinymce.min.js'></script>
+	<script src='../jquery.min.js'></script>
 
 	<!-- DROPDOWN BOX AND SUBMIT BUTTON STYLING -->
 	<style type="text/css">
@@ -100,13 +101,27 @@ if(isset($_SESSION['username']) && isset($_SESSION['rank'])) {
 						if(this.readyState == 4 && this.status == 200) {
 							var editor = tinymce.get('contentArea');
 							editor.setContent(this.responseText, {format : 'raw'});
+							if(val == 'home') {
+								$("#changecontentbutton").after("<br /><br /><button onclick='modifyFeatureImages()'>Add or remove feature images</button>");
+							}
 						}
 					};
 					xhttp.open("GET", "getpage.php?p=" + val, true);
 					xhttp.send();
 				}
+				function modifyFeatureImages() {
+					$.ajax({
+						url : "getfeatureimagelist.php",
+						type : "get",
+
+					}).done(function(data) {
+						alert(data);
+					}).fail(function(xhr, status, errorThrown) {
+						alert(errorThrown);
+					});
+				}
 			</script>
-			<input type="submit" value="Change page content">
+			<input type="submit" id="changecontentbutton" value="Change page content">
 			</form>
 
 	<?php

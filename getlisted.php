@@ -87,7 +87,9 @@
 
 	<div class="content">
 	<p>
-		Hey! Welcome to our party.  Make a business account to get listed!<br ><br /><br /><br />
+		Hey! Make a business account to get listed!<br ><br />
+		To get listed, please fill out the following form, with everything as you want it to appear in our directory.  If your business is <i>not</i> listed on our site, your company will be automatically added to our directory after payment is processed.  To retain customer security, if your business is <i>already</i> listed, a customer service representative will contact you within 48 hours of payment being processed to confirm business details and transfer ownership to your business account.  If you're here to <i>renew</i> or <i>modify</i> a listing, please do this through your business account portal instead.<br /><br />
+		<b>If you're having any trouble before, during, or after the listing process, please contact customer service with your concern.  Thanks for your business!</b><br /><br />
 		<form method='POST' action='createbusinessaccount.php' id="createacct">
 		<table class="getlisted">
 			<tr><td>COMPANY NAME</td><td><input type="text" name="companyname" required></td></tr>
@@ -95,13 +97,15 @@
 			<tr><td>WEBSITE URL</td><td><input type="text" name="url" required></td></tr>
 			<tr><td>MERCHANT DESCRIPTION</td><td><textarea name="description" rows="5" cols="30" required></textarea></td></tr>
 			<tr><td>PRIMARY CONTACT</td><td><input type="text" name="pcfirst" placeholder="First" required><input type="text" name="pclast" placeholder="Last" required></td></tr>
-			<tr><td>BUSINESS PHONE</td><td><input type="text" name="phone" required></td></tr>
+			<tr><td>PRIMARY CONTACT PHONE</td><td><input type="text" name="pcphone" required></td></tr>
+			<tr><td>PRIMARY CONTACT EMAIL</td><td><input type="text" name="pcemail" required></td></tr>
+			<tr><td>CUSTOMER SERVICE PHONE</td><td><input type="text" name="phone" required></td></tr>
 			<tr><td>CUSTOMER SERVICE EMAIL</td><td><input type="text" name="email" required></td></tr>
 			<tr><td>BEGIN SERVICE TYPE</td><td><input type="radio" name="service" value="basic" required>Basic Listing - $360 ANNUALLY (Full address, phone, website, email)<br />
 			<input type="radio" name="service" value="logo" required>Basic Listing with Logo - $420 ANNUALLY (Full address, phone, website, email, logo) <br />
 			<input type="radio" name="service" value="premiere" required>Premiere Listing - $540 ANNUALLY (Basic listing with Logo plus premium placement ad at top of company's category listing)<br />
 			</td></tr>
-			<tr><td>ADDITIONAL </td><td>insert more stuffz here</td></tr>
+			<tr><td>ADDITIONAL </td><td></td></tr>
 			<tr><td></td><td><input type="submit" value="SUBMIT FORM"></td></tr>
 		</table>
 		</form>

@@ -113,3 +113,46 @@ nav ul li a:hover {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 185, 218, 0.7);
 }
+
+.widget {
+	display:inline-block;
+	width:300px;
+	border:1px solid green;
+	padding: 20px;
+	text-align:center;
+	height:200px;
+	vertical-align: top;
+	margin:10px;
+}
+.widget span {
+	font-family:"Courier New";
+	font-weight:bold;
+}
+.widget button {
+	-webkit-border-radius: 7;
+		-moz-border-radius: 7;
+		border-radius: 7px;
+		font-family: Arial;
+		color: #ffffff;
+		font-size: 17px;
+		padding: 7px 20px 7px 20px;
+		text-decoration: none;
+		width:100%;
+}
+
+.widget .positive {
+		background: #019B0E;
+}
+
+.widget .positive:hover {
+	background:#007A0A;
+	text-decoration:none;
+}
+
+.widget .negative {
+	background:#A30000;
+}
+
+.widget .negative:hover {
+	background:#7F0000;
+}

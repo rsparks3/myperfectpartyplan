@@ -77,10 +77,22 @@
 
 	<div id="slideshowcontainer">
 			<ul class="featurephotos">
-				<li><img class="slides" src="images/index/image1.jpg" /></li>
-				<li><img class="slides" src="images/index/image2.jpg" /></li>
-				<li><img class="slides" src="images/index/image3.jpg" /></li>
-				<li><img class="slides" src="images/index/image4.jpg" /></li>
+				<?php
+					$sql = "SELECT * FROM `feature_photos`";
+					$result = $conn->query($sql);
+					if($result->num_rows > 0) {
+						while($row = mysqli_fetch_array($result)) {
+							echo("<li><img class='slides' src='" . $row['link'] . "' /></li>");
+						}
+					} else {
+						echo('<li><img class="slides" src="images/index/image1.jpg" /></li>
+							<li><img class="slides" src="images/index/image2.jpg" /></li>
+							<li><img class="slides" src="images/index/image3.jpg" /></li>
+							<li><img class="slides" src="images/index/image4.jpg" /></li>');
+					}
+
+				?>
+				<!---->
 			</ul>
 			<form method="GET" action="search.php">
 			<input class="searchbox" type="search" name="query" placeholder="Start typing a city to look for businesses">

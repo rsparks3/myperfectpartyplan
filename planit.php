@@ -43,6 +43,10 @@
 			}
 		}
 
+		function openSettingsMenu() {
+			document.getElementById("settingsdropdown").classList.toggle("show");
+		}
+
 		function createParty() {
 			var data = {
 				name : document.getElementById('pname').value,
@@ -80,12 +84,15 @@
 					var object = JSON.parse(json);
 					$("#party").empty();
 					var name = $("<span class='editable pname' id='pname' onclick='edit(this)'>" + object['party']['name'] + "<img src='images/icons/pencil.ico' /></span><br />");
-					var partySettings = $("<img src='images/icons/gear.ico' id='settingsbutton' width='20px' height='20px'></img>");
+					var partySettings = $("<img src='images/icons/gear.ico' id='settingsbutton' class='settingsbutton' width='20px' height='20px' onclick='openSettingsMenu();'></img>");
+					var settingsMenu = $("<div id='settingsdropdown' class='dropdown-content'></div>");
+					$(settingsMenu).append($("<a href='#' onclick='deleteParty()'>Delete Party</a>"));
 					var location = $("<span class='location'>Location: </span><span class='editable location' id='location' onclick='edit(this)'>" + object['party']['location'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var host = $("<span class='host'>Hosted by: </span><span class='editable host' id='host' onclick='edit(this)'>" + object['party']['host'] + "<img src='images/icons/pencil.ico' /></span><br />");
 					var businesseslabel = $("<span class='pname' style='font-size:18px;'>Businesses You've Selected</span><br />");
 					$("#party").append(name);
 					$("#party").append(partySettings);
+					$("#party").append(settingsMenu);
 					$("#party").append(location);
 					$("#party").append(host);
 					$("#party").append(businesseslabel);
@@ -135,12 +142,6 @@
 								alert("Failed" + errorThrown);
 							});
 						}
-
-						$("#party").append("<br /><br />");
-						var editPartyButton = $("<button onclick='editParty()' value='Edit Party'>Edit Party</button>");
-						$("#party").append(editPartyButton);
-						var deletePartyButton = $("<button onclick='deleteParty()' value='Delete Party'>Delete Party</button>");
-						$("#party").append(deletePartyButton);
 					}
 
 					
@@ -291,7 +292,20 @@
 	<script>
 	$(document).ready(function() {
 		updateParty();
+		window.onclick = function(event) {
+		if(!event.target.matches('.settingsbutton')) {
+			var dropdowns = document.getElementByClassName("dropdown-content");
+			for(var i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if(openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	}
 	});
+
+	
 	</script>
 </body>
 </html>

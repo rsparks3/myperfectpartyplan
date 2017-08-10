@@ -8,48 +8,26 @@ $rank = $_SESSION['rank'];
 <head>
 	<title>Admin Panel</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
-	<style type="text/css">
-		.widget {
-			display:inline-block;
-			width:300px;
-			border:1px solid green;
-			padding: 20px;
-			text-align:center;
-			height:200px;
-		}
-		.widget span {
-			font-family:"Courier New";
-			font-weight:bold;
-		}
-		.widget button {
-			-webkit-border-radius: 7;
-  			-moz-border-radius: 7;
-  			border-radius: 7px;
-  			font-family: Arial;
-  			color: #ffffff;
-  			font-size: 17px;
-  			padding: 7px 20px 7px 20px;
-  			text-decoration: none;
-  			width:100%;
-		}
+	<script>
+		function addAdminUser() {
 
-		.widget .positive {
-  			background: #019B0E;
 		}
+		function removeAdminuser() {
 
-		.widget .positive:hover {
-			background:#007A0A;
-			text-decoration:none;
 		}
+		function addBusiness() {
 
-		.widget .negative {
-			background:#A30000;
 		}
+		function addBanner() {
 
-		.widget .negative:hover {
-			background:#7F0000;
 		}
-	</style>
+		function removeBusiness() {
+
+		}
+		function removeBanner() {
+
+		}
+	</script>
 </head>
 
 <body>
@@ -63,16 +41,16 @@ $rank = $_SESSION['rank'];
 	?>
 
 	<div class="content">
-	<span>Seriously none of this works yet...</span><br />
 	<?php
 	if($rank == "admin") {
 	?>
 		<!--If is logged in as admin-->
 			<div class="widget">
-				<span>Admin User Management</span>
-				<button type="button" class="positive" onclick="addUser()">Add admin user</button><br />
-				<button type="button" class="negative" onclick="removeUser()">Remove admin user</button><br />
-				<button type="button" class="positive" onclick="changeUserRank()">Change user Rank</button><br />
+				<span>User Management</span>
+				<button type="button" class="positive" onclick="addAdminUser()">Add admin account</button><br />
+				<button type="button" class="negative" onclick="removeAdminUser()">Remove admin account</button><br />
+				<button type="button" class="positive" onclick="viewUserDetails()">Modify User Account</button><br />
+				<button type="button" class="positive" onclick="addUserAccount()">Add User Account</button><br />
 			</div>
 			<div class="widget">
 				<span>Directory Management</span>
